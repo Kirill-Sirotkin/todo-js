@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDo List</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: antiquewhite;
+        }
+        body {
+            background-color: rgb(31 41 55);
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px;
+            font-size: 40px;
+        }
+        main {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            justify-content: start;
+            row-gap: 12px;
+            column-gap: 12px;
+            padding: 12px;
+        }
+        .card {
+            background-color: chocolate;
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+  </head>
+  <body>
+    <header>
+        <div>
+            ToDo List
+        </div>
+        <div>
+            username
+        </div>
+    </header>
+    <main>
+        <div class="card">
+            square
+        </div>
+        <div class="card card-plus">
+            plus
+        </div>
+    </main>
+    <script></script>
+  </body>
+</html>
