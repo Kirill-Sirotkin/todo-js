@@ -84,7 +84,11 @@
             username
         </div>
     </header>
-    <main>
+
+    <main id="todo-list">
+    </main>
+
+    <template id="todo-item">
         <div class="card card-todo">
             <div>
                 <div class="card-todo-icons">
@@ -92,22 +96,27 @@
                     <img class="card-icon" src="svgs/edit_icon.svg" alt="">
                 </div>
                 <div class="card-todo-name-wrapper">
-                    <div class="card-todo-name">
+                    <div data-name class="card-todo-name">
                         NAME
                     </div>
-                    <div>
+                    <div data-description>
                         DESCRIPTION
                     </div>
                 </div>
             </div>
             <div class="button-status">
-                status
+                Not started
             </div>
         </div>
+    </template>
+
+    <template id="add-item">
         <div class="card card-plus">
             <img class="card-plus-icon" src="svgs/plus_icon.svg" alt="">
         </div>
-    </main>
-    <script></script>
+    </template>
+
+    <script src="script.js">
+    </script>
   </body>
 </html>
