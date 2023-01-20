@@ -29,7 +29,7 @@ const clickStatusButton = (event) => {
     const itemIndex = todoItems.findIndex(todoItemElement => todoItemElement.id === id);
 
     const status = new StatusHelper(todoItems[itemIndex].status);
-    todoItems[itemIndex].status = status.iterateStatus();
+    todoItems[itemIndex].status = status.nextStatus();
     
     drawCards();
 }
@@ -49,6 +49,7 @@ const drawCards = () => {
         itemName.innerHTML = todoItemElement.name;
         itemDescription.innerHTML = todoItemElement.description;
         statusButton.innerHTML = statusHelper.getStatusText();
+        statusHelper.toggleClasses(statusButton);
     
         const closeIcon = todoItemNode.querySelector("[data-close-icon]");
         const editIcon = todoItemNode.querySelector("[data-edit-icon]");
@@ -103,25 +104,42 @@ class StatusHelper {
         this.#status = status;
     }
 
-    iterateStatus () {
+    nextStatus () {
         const mapLength = this.#statusMap.size;
 
         const newStatus = this.#status + 1;
 
         if (newStatus >= mapLength) {
             this.#status = 0;
-            return this.#status;
+            return 0;
         }
         
         this.#status = newStatus;
         return this.#status;
     }
 
-    getCssClass () {
-        return this.#statusMap.get(this.#status).cssClass;
+    #prevStatus () {
+        const mapLength = this.#statusMap.size;
+
+        const newStatus = this.#status - 1;
+
+        if (newStatus < 0) {
+            return mapLength - 1;
+        }
+        
+        return newStatus;
     }
 
     getStatusText () {
         return this.#statusMap.get(this.#status).text;
+    }
+
+    toggleClasses (element) {
+        const elementClasses = element.classList;
+        const currentClass = this.#statusMap.get(this.#status).cssClass;
+        const prevClass = this.#statusMap.get(this.#prevStatus()).cssClass;
+
+        elementClasses.toggle(currentClass);
+        elementClasses.remove(prevClass);
     }
 }

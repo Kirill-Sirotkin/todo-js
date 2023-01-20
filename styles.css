@@ -72,7 +72,7 @@ main {
     background-color: maroon;
 }
 .status-in-progress{
-    background-color: gold;
+    background-color: orange;
 }
 .status-completed{
     background-color: darkolivegreen;
