@@ -1,0 +1,79 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: antiquewhite;
+}
+body {
+    background-color: rgb(31 41 55);
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    font-size: 40px;
+}
+main {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: start;
+    row-gap: 12px;
+    column-gap: 12px;
+    padding: 12px;
+}
+.card-icon {
+    width: 30px;
+    height: 30px;
+}
+.card-plus-icon {
+    width: 200px;
+    height: 200px;
+}
+.card {
+    width: 300px;
+    height: 300px;
+    display: flex;
+}
+.card-todo {
+    background-color: chocolate;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.card-todo-icons { 
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 5px    
+}
+.card-todo-name-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    gap: 12px;
+}
+.card-todo-name {
+    height: 24px;
+    font-weight: bolder;
+}
+.card-plus {
+    border: 1px solid #faebd7;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+.button-status {
+    padding: 5px;
+    font-size: 30px;
+    text-align: center;
+}
+.button{
+    cursor: pointer;
+}
+.status-not-started{
+    background-color: maroon;
+}
+.status-in-progress{
+    background-color: gold;
+}
+.status-completed{
+    background-color: darkolivegreen;
+}
