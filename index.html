@@ -28,7 +28,11 @@
             column-gap: 12px;
             padding: 12px;
         }
-        img {
+        .card-icon {
+            width: 30px;
+            height: 30px;
+        }
+        .card-plus-icon {
             width: 200px;
             height: 200px;
         }
@@ -42,6 +46,11 @@
             justify-content: space-between;
             flex-direction: column;
         }
+        .card-todo-icons { 
+            display: flex;
+            flex-direction: row-reverse;
+            gap: 5px    
+        }
         .card-todo-name-wrapper {
             display: flex;
             flex-direction: column;
@@ -50,9 +59,7 @@
         }
         .card-todo-name {
             height: 24px;
-        }
-        .card-todo-description {
-            
+            font-weight: bolder;
         }
         .card-plus {
             border: 1px solid #faebd7;
@@ -80,6 +87,10 @@
     <main>
         <div class="card card-todo">
             <div>
+                <div class="card-todo-icons">
+                    <img class="card-icon" src="svgs/close_icon.svg" alt="">  
+                    <img class="card-icon" src="svgs/edit_icon.svg" alt="">
+                </div>
                 <div class="card-todo-name-wrapper">
                     <div class="card-todo-name">
                         NAME
@@ -88,17 +99,13 @@
                         DESCRIPTION
                     </div>
                 </div>
-                <div>
-                    <img src="svgs/edit_icon.svg" alt="">
-                    <img src="svgs/close_icon.svg" alt="">
-                </div>
             </div>
             <div class="button-status">
                 status
             </div>
         </div>
         <div class="card card-plus">
-            <img src="svgs/plus_icon.svg" alt="">
+            <img class="card-plus-icon" src="svgs/plus_icon.svg" alt="">
         </div>
     </main>
     <script></script>
