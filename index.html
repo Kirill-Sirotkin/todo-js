@@ -35,16 +35,36 @@
         .card {
             width: 300px;
             height: 300px;
+            display: flex;
         }
         .card-todo {
             background-color: chocolate;
+            justify-content: space-between;
+            flex-direction: column;
+        }
+        .card-todo-name-wrapper {
+            display: flex;
+            flex-direction: column;
+            padding: 12px;
+            gap: 12px;
+        }
+        .card-todo-name {
+            height: 24px;
+        }
+        .card-todo-description {
+            
         }
         .card-plus {
             border: 1px solid #faebd7;
             box-sizing: border-box;
-            display: flex;
             justify-content: center;
             align-items: center;
+        }
+        .button-status {
+            padding: 5px;
+            font-size: 30px;
+            text-align: center;
+            background-color: maroon;
         }
     </style>
   </head>
@@ -59,7 +79,22 @@
     </header>
     <main>
         <div class="card card-todo">
-            square
+            <div>
+                <div class="card-todo-name-wrapper">
+                    <div class="card-todo-name">
+                        NAME
+                    </div>
+                    <div>
+                        DESCRIPTION
+                    </div>
+                </div>
+                <div>
+
+                </div>
+            </div>
+            <div class="button-status">
+                status
+            </div>
         </div>
         <div class="card card-plus">
             <img src="svgs/plus-add-cross-outline-svgrepo-com.svg" alt="">
