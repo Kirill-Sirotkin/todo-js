@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDo App</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="auth-wrapper">
+        <div>
+            <marquee>
+                <i>
+                    <b>
+                        <u>
+                            ToDo App
+                        </u>
+                    </b>
+                </i>
+            </marquee>
+        </div>
+        <div class="auth-buttons-wrapper">
+            <div id="signup-button" class="auth-button button">
+                sign up
+            </div>
+            <div id="signin-button" class="auth-button button">
+                sign in
+            </div>
+        </div>
+        <form id="signup-form" class="hidden form signup-form">
+            <input type="email" id="signup-name" name="_email" class="input input-name" placeholder="e-mail">
+            <input type="password" id="signup-password" name="_password" class="input input-password" placeholder="password">
+            <input type="submit" value="submit" class="submit-button">
+        </form>
+        <form id="signin-form" class="hidden form signin-form">
+            <input type="text" id="signin-name" name="_email" class="input input-name" placeholder="e-mail">
+            <input type="password" id="signin-password" name="_password" class="input input-password" placeholder="password">
+            <input type="submit" value="submit" class="submit-button">
+        </form>
+    </div>
+
+    <script type="module" src="auth.js"></script>
+  </body>
+</html>

@@ -1,4 +1,4 @@
-const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk2OGU2ZDBiLWFlYWEtNGQ5My1hMmY4LWMzNTViOGJjZTI3MSIsIm5iZiI6MTY3NDMyOTMyNCwiZXhwIjoxNjc0NDE1NzI0LCJpYXQiOjE2NzQzMjkzMjR9.bjKMY4KbgqMG8GtK-ue--W2d1TL0cDrUY-TfG3cgiMA';
+const token = localStorage.getItem("token");
 
 export const getToDosWithApi = async (todoItems) => {
     const httpString = `http://localhost:5019/api/v1/todos`;
@@ -6,7 +6,7 @@ export const getToDosWithApi = async (todoItems) => {
     const responseResult = await fetch(httpString, {
         method: "GET",
         headers: {
-            Authorization: `Bearer ${TOKEN}`
+            Authorization: `Bearer ${token}`
         }
     });
     
@@ -20,7 +20,7 @@ export const postToDoWithApi = async (name, description) => {
     const responseResult = await fetch(httpString, {
         method: "POST",
         headers: {
-            Authorization: `Bearer ${TOKEN}`,
+            Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -39,7 +39,7 @@ export const putToDoWithApi = async (id, newName, newDescription, status) => {
     await fetch(httpString, {
         method: "PUT",
         headers: {
-            Authorization: `Bearer ${TOKEN}`,
+            Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -56,9 +56,39 @@ export const deleteToDoWithApi = async (id) => {
     await fetch(httpString, {
         method: "DELETE",
         headers: {
-            Authorization: `Bearer ${TOKEN}`
+            Authorization: `Bearer ${token}`
         }
     });
+}
+
+export const postSignupWithApi = async (body) => {
+    const httpString = `http://localhost:5019/api/v1/signup`;
+
+    const responseResult = await fetch(httpString, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body
+    });
+    
+    const responseData = await responseResult.json();
+    localStorage.setItem("token", responseData._token);
+}
+
+export const postSigninWithApi = async (body) => {
+    const httpString = `http://localhost:5019/api/v1/signin`;
+
+    const responseResult = await fetch(httpString, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body
+    });
+
+    const responseData = await responseResult.json();
+    localStorage.setItem("token", responseData._token);
 }
 
 const convertBackendModel = (array) => {

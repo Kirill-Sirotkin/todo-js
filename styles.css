@@ -68,12 +68,71 @@ main {
 .button{
     cursor: pointer;
 }
-.status-not-started{
+.status-not-started {
     background-color: maroon;
 }
-.status-in-progress{
+.status-in-progress {
     background-color: orange;
 }
-.status-completed{
+.status-completed {
     background-color: darkolivegreen;
+}
+.auth-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    font-size: 60px;
+    font-weight: bold;
+}
+.auth-buttons-wrapper {
+    font-size: 32px;
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+}
+.auth-button {
+    background-color: darkslateblue;
+    padding: 5px;
+    height: 50px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+}
+.hidden {
+    display: none !important;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 500px;
+    padding: 10px;
+    gap: 10px;
+}
+.signup-form {
+    background-color: crimson;
+}
+.signin-form {
+    background-color: forestgreen;
+}
+input {
+    all: unset;
+}
+.input {
+    width: 100%;
+    box-sizing:border-box;
+    padding: 10px;
+    background-color: rgba(47, 79, 79, 0.3);
+}
+.submit-button {
+    font-size: 24px;
+    width: fit-content;
+    padding: 5px;
+    background-color: rgba(47, 79, 79);
 }

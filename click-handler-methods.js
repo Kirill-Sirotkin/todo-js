@@ -1,5 +1,5 @@
 import { StatusHelper } from "./status-helper.js";
-import { getToDosWithApi, postToDoWithApi, putToDoWithApi, deleteToDoWithApi } from "./api-handler-methods.js";
+import { postToDoWithApi, putToDoWithApi, deleteToDoWithApi, postSignupWithApi, postSigninWithApi } from "./api-handler-methods.js";
 
 export const clickCloseButton = async (event) => {
     if (!confirm("Are you sure you want to delete item?")) return;
@@ -38,4 +38,34 @@ export const clickAddItem = async () => {
     if (!name) return;
 
     await postToDoWithApi(name, description);
+}
+
+export const clickSignupButton = async (signupForm, signinForm) => {
+    signupForm.classList.toggle("hidden");
+    signinForm.classList.add("hidden");
+}
+
+export const clickSigninButton = async (signinForm, signupForm) => {
+    signinForm.classList.toggle("hidden");
+    signupForm.classList.add("hidden");
+}
+
+export const clickSignupSubmitButton = async (event) => {
+    const data = new FormData(event.target);
+    const jsonObject = Object.fromEntries(data.entries());
+    const jsonData = JSON.stringify(jsonObject);
+    await postSignupWithApi(jsonData);
+
+    localStorage.setItem("username", jsonObject._email);
+    window.location.href = "/";
+}
+
+export const clickSigninSubmitButton = async (event) => {
+    const data = new FormData(event.target);
+    const jsonObject = Object.fromEntries(data.entries());
+    const jsonData = JSON.stringify(jsonObject);
+    await postSigninWithApi(jsonData);
+    
+    localStorage.setItem("username", jsonObject._email);
+    window.location.href = "/";
 }

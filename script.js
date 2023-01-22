@@ -42,5 +42,8 @@ const todoItems = [];
 const todoList = document.getElementById("todo-list");
 const todoItem = document.getElementById("todo-item");
 const addItem = document.getElementById("add-item");
+const usernameField = document.getElementById("username-placeholder");
+
+usernameField.textContent = localStorage.getItem("username");
 
 drawCards();
