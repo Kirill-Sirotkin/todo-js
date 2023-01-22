@@ -1,40 +1,10 @@
-const clickCloseButton = (event) => {
-    if (!confirm("Are you sure you want to delete item?")) return;
+import { StatusHelper } from "./status-helper.js";
+import { clickAddItem, clickCloseButton, clickEditButton, clickStatusButton } from "./click-handler-methods.js";
+import { getToDosWithApi } from "./api-handler-methods.js";
 
-    const id = event.target.closest("[data-id]").dataset.id;
-    const itemIndex = todoItems.findIndex(todoItemElement => todoItemElement.id === id);
+const drawCards = async () => {
 
-    todoItems.splice(itemIndex, 1);
-
-    drawCards();
-}
-
-const clickEditButton = (event) => {
-    const id = event.target.closest("[data-id]").dataset.id;
-    const itemIndex = todoItems.findIndex(todoItemElement => todoItemElement.id === id);
-
-    const name = prompt("Enter new name", todoItems[itemIndex].name);
-    const description = prompt("Enter new description", todoItems[itemIndex].description);
-
-    if (!name) return;
-
-    todoItems[itemIndex].name = name;
-    todoItems[itemIndex].description = description;
-
-    drawCards();
-}
-
-const clickStatusButton = (event) => {
-    const id = event.target.closest("[data-id]").dataset.id;
-    const itemIndex = todoItems.findIndex(todoItemElement => todoItemElement.id === id);
-
-    const status = new StatusHelper(todoItems[itemIndex].status);
-    todoItems[itemIndex].status = status.nextStatus();
-    
-    drawCards();
-}
-
-const drawCards = () => {
+    await getToDosWithApi(todoItems);
     todoList.innerHTML = "";
 
     todoItems.forEach(todoItemElement => {
@@ -54,35 +24,17 @@ const drawCards = () => {
         const closeIcon = todoItemNode.querySelector("[data-close-icon]");
         const editIcon = todoItemNode.querySelector("[data-edit-icon]");
     
-        closeIcon.addEventListener("mousedown", clickCloseButton);
-        editIcon.addEventListener("mousedown", clickEditButton);
-        statusButton.addEventListener("mousedown", clickStatusButton);
+        closeIcon.addEventListener("mousedown", async (event) => { await clickCloseButton(event); drawCards(); });
+        editIcon.addEventListener("mousedown", async (event) => { await clickEditButton(event, todoItems); drawCards(); });
+        statusButton.addEventListener("mousedown", async (event) => { await clickStatusButton(event, todoItems); drawCards(); });
     
         todoList.prepend(todoItemNode);
     });
 
     const addItemNode = addItem.content.firstElementChild.cloneNode(true);
 
-    addItemNode.addEventListener("mousedown", clickAddItem);
+    addItemNode.addEventListener("mousedown", async (event) => { await clickAddItem(); drawCards(); });
     todoList.appendChild(addItemNode);
-}
-
-const clickAddItem = () => {
-    const name = prompt("Enter todo name", "ToDo name");
-    const description = prompt("Enter todo description");
-
-    if (!name) return;
-
-    const todoItemDTO = {
-        id: Date.now().toString(),
-        name,
-        description,
-        status: 0
-    }
-
-    todoItems.push(todoItemDTO);
-
-    drawCards();
 }
 
 const todoItems = [];
@@ -92,54 +44,3 @@ const todoItem = document.getElementById("todo-item");
 const addItem = document.getElementById("add-item");
 
 drawCards();
-
-class StatusHelper {
-    #statusMap = new Map([
-        [0, {text: "Not started", cssClass: "status-not-started"}],
-        [1, {text: "In progress", cssClass: "status-in-progress"}],
-        [2, {text: "Completed", cssClass: "status-completed"}]]);
-    #status;
-    
-    constructor (status) {
-        this.#status = status;
-    }
-
-    nextStatus () {
-        const mapLength = this.#statusMap.size;
-
-        const newStatus = this.#status + 1;
-
-        if (newStatus >= mapLength) {
-            this.#status = 0;
-            return 0;
-        }
-        
-        this.#status = newStatus;
-        return this.#status;
-    }
-
-    #prevStatus () {
-        const mapLength = this.#statusMap.size;
-
-        const newStatus = this.#status - 1;
-
-        if (newStatus < 0) {
-            return mapLength - 1;
-        }
-        
-        return newStatus;
-    }
-
-    getStatusText () {
-        return this.#statusMap.get(this.#status).text;
-    }
-
-    toggleClasses (element) {
-        const elementClasses = element.classList;
-        const currentClass = this.#statusMap.get(this.#status).cssClass;
-        const prevClass = this.#statusMap.get(this.#prevStatus()).cssClass;
-
-        elementClasses.toggle(currentClass);
-        elementClasses.remove(prevClass);
-    }
-}
