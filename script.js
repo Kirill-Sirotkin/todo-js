@@ -1,5 +1,5 @@
 import { StatusHelper } from "./status-helper.js";
-import { clickAddItem, clickCloseButton, clickEditButton, clickStatusButton } from "./click-handler-methods.js";
+import { clickAddItem, clickCloseButton, clickEditButton, clickStatusButton, clickLogoutButton } from "./click-handler-methods.js";
 import { getToDosWithApi } from "./api-handler-methods.js";
 
 const drawCards = async () => {
@@ -43,6 +43,9 @@ const todoList = document.getElementById("todo-list");
 const todoItem = document.getElementById("todo-item");
 const addItem = document.getElementById("add-item");
 const usernameField = document.getElementById("username-placeholder");
+const logoutButton = document.getElementById("logout");
+
+logoutButton.addEventListener("mousedown", clickLogoutButton);
 
 usernameField.textContent = localStorage.getItem("username");
 

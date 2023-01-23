@@ -1,6 +1,13 @@
 import { StatusHelper } from "./status-helper.js";
 import { postToDoWithApi, putToDoWithApi, deleteToDoWithApi, postSignupWithApi, postSigninWithApi } from "./api-handler-methods.js";
 
+export const clickLogoutButton = () => {
+    localStorage.setItem("username", "username");
+    localStorage.setItem("token", "")
+
+    window.location.href = "/auth.html";
+}
+
 export const clickCloseButton = async (event) => {
     if (!confirm("Are you sure you want to delete item?")) return;
 
@@ -40,14 +47,24 @@ export const clickAddItem = async () => {
     await postToDoWithApi(name, description);
 }
 
-export const clickSignupButton = async (signupForm, signinForm) => {
+export const clickSignupButton = async (signupForm, signinForm, signupButton, signinButton) => {
     signupForm.classList.toggle("hidden");
     signinForm.classList.add("hidden");
+
+    signupButton.classList.toggle("auth-button-deselect");
+    signupButton.classList.toggle("auth-button-select");
+    signinButton.classList.remove("auth-button-select");
+    signinButton.classList.add("auth-button-deselect");
 }
 
-export const clickSigninButton = async (signinForm, signupForm) => {
+export const clickSigninButton = async (signinForm, signupForm, signinButton, signupButton) => {
     signinForm.classList.toggle("hidden");
     signupForm.classList.add("hidden");
+
+    signinButton.classList.toggle("auth-button-deselect");
+    signinButton.classList.toggle("auth-button-select");
+    signupButton.classList.remove("auth-button-select");
+    signupButton.classList.add("auth-button-deselect");
 }
 
 export const clickSignupSubmitButton = async (event) => {

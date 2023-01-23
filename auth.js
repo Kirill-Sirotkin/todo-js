@@ -9,5 +9,5 @@ const signinForm = document.getElementById("signin-form");
 signupForm.addEventListener("submit", async (event) => { event.preventDefault(); await clickSignupSubmitButton(event) });
 signinForm.addEventListener("submit", async (event) => { event.preventDefault(); await clickSigninSubmitButton(event) });
 
-signupButton.addEventListener("mousedown", async () => await clickSignupButton(signupForm, signinForm));
-signinButton.addEventListener("mousedown", async () => await clickSigninButton(signinForm, signupForm));
+signupButton.addEventListener("mousedown", async () => await clickSignupButton(signupForm, signinForm, signupButton, signinButton));
+signinButton.addEventListener("mousedown", async () => await clickSigninButton(signinForm, signupForm, signinButton, signupButton));
