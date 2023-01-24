@@ -34,8 +34,11 @@ export const clickStatusButton = async (event, todoItems) => {
     const id = event.target.closest("[data-id]").dataset.id;
     const itemIndex = todoItems.findIndex(todoItemElement => todoItemElement.id === id);
 
+    const name = todoItems[itemIndex].name;
+    const description = todoItems[itemIndex].description;
     const status = new StatusHelper(todoItems[itemIndex].status);
-    todoItems[itemIndex].status = status.nextStatus();
+
+    await putToDoWithApi(id, name, description, status.nextStatus());
 }
 
 export const clickAddItem = async () => {
