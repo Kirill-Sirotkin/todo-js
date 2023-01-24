@@ -47,6 +47,12 @@ const logoutButton = document.getElementById("logout");
 
 logoutButton.addEventListener("mousedown", clickLogoutButton);
 
-usernameField.textContent = localStorage.getItem("username");
+const localStorageUsername = localStorage.getItem("username");
+const localStorageToken = localStorage.getItem("token");
+usernameField.textContent = localStorageUsername;
+
+if (!localStorageToken || !localStorageUsername) {
+    window.location.href = "/auth.html";
+}
 
 drawCards();
